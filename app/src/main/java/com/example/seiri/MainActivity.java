@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     private List<FoodProduct> data;
 
+    private LinearLayoutManager linearLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,16 +45,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
         RecyclerView rvFoodProduct = (RecyclerView) findViewById(R.id.recyclerView);
+        linearLayoutManager = new LinearLayoutManager(this);
 
-        if (foodProductViewModel.getAllFoodProduct().getValue() != null) {
-            data = foodProductViewModel.getAllFoodProduct().getValue();
+        foodProductViewModel.getAllFoodProduct().observe(this, new Observer<List<FoodProduct>>() {
+            @Override
+            public void onChanged(List<FoodProduct> foodProducts) {
 
-            FoodProductAdapter adapter = new FoodProductAdapter(data);
+                if (foodProductViewModel.getAllFoodProduct().getValue() != null) {
+                    data = foodProductViewModel.getAllFoodProduct().getValue();
 
-            rvFoodProduct.setAdapter(adapter);
+                    FoodProductAdapter adapter = new FoodProductAdapter(data);
 
-            rvFoodProduct.setLayoutManager(new LinearLayoutManager(this));
-        }
+                    rvFoodProduct.setAdapter(adapter);
+
+                    rvFoodProduct.setLayoutManager(linearLayoutManager);
+                }
+            }
+        });
     }
 
     public void viewAddFoodProduct(View view) {
