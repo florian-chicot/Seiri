@@ -1,7 +1,10 @@
 package com.example.seiri;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +13,17 @@ import android.widget.TextView;
 
 import com.example.seiri.BD.FoodProduct;
 import com.example.seiri.BD.FoodProductViewModel;
+import com.example.seiri.Tools.FoodProductAdapter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private FoodProductViewModel foodProductViewModel;
+
+    private List<FoodProduct> data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +41,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        RecyclerView rvFoodProduct = (RecyclerView) findViewById(R.id.recyclerView);
+
+        data = foodProductViewModel.getAllFoodProduct().getValue();
+
+        FoodProductAdapter adapter = new FoodProductAdapter(data);
+
+        rvFoodProduct.setAdapter(adapter);
+
+        rvFoodProduct.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void viewAddFoodProduct(View view) {

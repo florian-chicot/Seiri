@@ -23,7 +23,7 @@ public interface FoodProductDAO {
     @Query("DELETE from FoodProduct")
     void deleteAllFoodProduct();
 
-    @Query("SELECT * from FoodProduct ORDER BY expiryDate ASC")
+    @Query("SELECT * from FoodProduct")
     LiveData<List<FoodProduct>> getAllFoodProduct();
 
     @Query("SELECT count(*) from FoodProduct")
