@@ -3,16 +3,14 @@ package com.example.seiri.BD;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.Date;
-
 @Entity
 public class FoodProduct {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
-    private Date expiryDate;
+    private String expiryDate;
 
-    public FoodProduct(String name, Date expiryDate) {
+    public FoodProduct(String name, String expiryDate) {
         this.name = name;
         this.expiryDate = expiryDate;
     }
@@ -33,11 +31,11 @@ public class FoodProduct {
         this.name = name;
     }
 
-    public Date getExpiryDate() {
+    public String getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(Date expiryDate) {
+    public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
     }
 }
