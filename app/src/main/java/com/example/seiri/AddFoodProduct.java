@@ -1,10 +1,10 @@
 package com.example.seiri;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,21 +19,23 @@ public class AddFoodProduct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_food_product);
+
+        foodProductViewModel = new ViewModelProvider(this).get(FoodProductViewModel.class);
     }
 
     public void addFoodProduct(View view) {
+
         EditText name = findViewById(R.id.edtNameFoodProduct);
         EditText expiryDate = findViewById(R.id.edtDateFoodProduct);
 
         String nameFP = name.getText().toString();
         String expiryDateFP = expiryDate.getText().toString();
 
-        Log.d("MyLogs", "Variable de base ======> " + nameFP + " et " + expiryDateFP);
-
-        FoodProduct foodProduct = new FoodProduct("nameFP", "02/04/2014");
-
-        Log.d("MyLogs", "Objet créer ======> " + foodProduct.getName() + " et " + foodProduct.getExpiryDate());
+        FoodProduct foodProduct = new FoodProduct(nameFP, expiryDateFP);
 
         foodProductViewModel.insert(foodProduct);
+
+        Intent intent = new Intent(view.getContext(), MainActivity.class);
+        startActivity(intent);
     }
 }
