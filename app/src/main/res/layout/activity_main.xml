@@ -6,21 +6,36 @@
   android:layout_height="match_parent"
   tools:context=".MainActivity">
 
-  <TextView
-    android:id="@+id/tvNbFoodProduct"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="tvNbFoodProduct" />
-
-  <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recyclerView"
+  <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_constraintTop_toBottomOf="@id/tvNbFoodProduct"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent" />
+    android:orientation="vertical">
 
+    <TextView
+      android:id="@+id/tvNbFoodProduct"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="tvNbFoodProduct" />
+
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/recyclerView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" />
+  </LinearLayout>
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/btnDeleteAllFoodProduct"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="84dp"
+    android:layout_marginBottom="28dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:onClick="deleteAllFoodProduct"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="@id/btnAddFoodProduct"
+    app:srcCompat="@android:drawable/ic_menu_delete"
+    tools:ignore="SpeakableTextPresentCheck" />
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton
     android:id="@+id/btnAddFoodProduct"
