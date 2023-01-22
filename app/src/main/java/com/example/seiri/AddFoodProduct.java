@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,11 +28,12 @@ public class AddFoodProduct extends AppCompatActivity {
         String nameFP = name.getText().toString();
         String expiryDateFP = expiryDate.getText().toString();
 
-        FoodProduct foodProduct = new FoodProduct(nameFP, expiryDateFP);
+        Log.d("MyLogs", "Variable de base ======> " + nameFP + " et " + expiryDateFP);
+
+        FoodProduct foodProduct = new FoodProduct("nameFP", "02/04/2014");
+
+        Log.d("MyLogs", "Objet créer ======> " + foodProduct.getName() + " et " + foodProduct.getExpiryDate());
 
         foodProductViewModel.insert(foodProduct);
-
-        Intent intent = new Intent(view.getContext(), MainActivity.class);
-        startActivity(intent);
     }
 }

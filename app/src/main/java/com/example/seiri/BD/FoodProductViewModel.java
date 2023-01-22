@@ -32,9 +32,9 @@ public class FoodProductViewModel extends AndroidViewModel {
         foodProductRepository.insert(foodProduct);
     }
 
-    public void updateFoodProduct(FoodProduct foodProduct) {
-        foodProductRepository.updateFoodProduct(foodProduct);
-    }
+//    public void updateFoodProduct(FoodProduct foodProduct) {
+//        foodProductRepository.updateFoodProduct(foodProduct);
+//    }
 
     public void deleteAllFoodProduct() {
         foodProductRepository.deleteAllFoodProduct();

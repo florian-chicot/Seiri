@@ -44,13 +44,15 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView rvFoodProduct = (RecyclerView) findViewById(R.id.recyclerView);
 
-        data = foodProductViewModel.getAllFoodProduct().getValue();
+        if (foodProductViewModel.getAllFoodProduct().getValue() != null) {
+            data = foodProductViewModel.getAllFoodProduct().getValue();
 
-        FoodProductAdapter adapter = new FoodProductAdapter(data);
+            FoodProductAdapter adapter = new FoodProductAdapter(data);
 
-        rvFoodProduct.setAdapter(adapter);
+            rvFoodProduct.setAdapter(adapter);
 
-        rvFoodProduct.setLayoutManager(new LinearLayoutManager(this));
+            rvFoodProduct.setLayoutManager(new LinearLayoutManager(this));
+        }
     }
 
     public void viewAddFoodProduct(View view) {

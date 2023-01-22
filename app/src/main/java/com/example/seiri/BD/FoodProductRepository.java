@@ -58,9 +58,9 @@ public class FoodProductRepository {
         new InsertThread(foodProductDAO).execute(w);
     }
 
-    public void updateFoodProduct(FoodProduct w) {
-        new InsertThread(foodProductDAO).execute(w);
-    }
+//    public void updateFoodProduct(FoodProduct w) {
+//        new InsertThread(foodProductDAO).execute(w);
+//    }
 
     public static class InsertThread {
         private  FoodProductDAO foodProductDAO;
@@ -78,7 +78,7 @@ public class FoodProductRepository {
                 @Override
                 public void run() {
                     foodProductDAO.insert(foodProduct);
-                    foodProductDAO.updateFoodProduct(foodProduct);
+                    // foodProductDAO.updateFoodProduct(foodProduct);
                 }
             });
         }
