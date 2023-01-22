@@ -2,13 +2,36 @@ package com.example.seiri;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.seiri.BD.FoodProduct;
+import com.example.seiri.BD.FoodProductViewModel;
 
 public class AddFoodProduct extends AppCompatActivity {
+    private FoodProductViewModel foodProductViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_food_product);
+    }
+
+    public void addFoodProduct(View view) {
+        EditText name = findViewById(R.id.edtNameFoodProduct);
+        EditText expiryDate = findViewById(R.id.edtDateFoodProduct);
+
+        String nameFP = name.getText().toString();
+        String expiryDateFP = expiryDate.getText().toString();
+
+        FoodProduct foodProduct = new FoodProduct(nameFP, expiryDateFP);
+
+        foodProductViewModel.insert(foodProduct);
+
+        Intent intent = new Intent(view.getContext(), MainActivity.class);
+        startActivity(intent);
     }
 }

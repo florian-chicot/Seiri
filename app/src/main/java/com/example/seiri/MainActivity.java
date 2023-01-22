@@ -25,17 +25,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer) {
                 TextView textView = findViewById(R.id.tvNbFoodProduct);
-                textView.setText(integer + "Aliments dans votre liste :");
+                textView.setText(integer + " Aliments dans votre liste :");
             }
         });
     }
 
-    public void addFoodProduct(View view) {
+    public void viewAddFoodProduct(View view) {
         Intent intent = new Intent(view.getContext(), AddFoodProduct.class);
         startActivity(intent);
     }
 
-    public void updateFoodProduct(View view) {
+    public void viewUpdateFoodProduct(View view) {
         Intent intent = new Intent(view.getContext(), AddFoodProduct.class);
         startActivity(intent);
     }
