@@ -40,7 +40,7 @@ public class FoodProductViewModel extends AndroidViewModel {
         foodProductRepository.deleteAllFoodProduct();
     }
 
-    public void deleteFoodProduct(FoodProduct foodProduct) {
-        foodProductRepository.deleteFoodProduct(foodProduct);
-    }
+//    public void deleteFoodProduct(FoodProduct foodProduct) {
+//        foodProductRepository.deleteFoodProduct(foodProduct);
+//    }
 }

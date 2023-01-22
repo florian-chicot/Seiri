@@ -35,9 +35,9 @@ public class FoodProductRepository {
         new DeleteAsyncTask(foodProductDAO).execute();
     }
 
-    public void deleteFoodProduct(FoodProduct foodProduct) {
-        new DeleteAsyncTask(foodProductDAO).execute();
-    }
+//    public void deleteFoodProduct(FoodProduct foodProduct) {
+//        new DeleteAsyncTask(foodProductDAO).execute();
+//    }
 
     private static class DeleteAsyncTask extends AsyncTask<FoodProduct, Void, Void> {
         private FoodProductDAO foodProductDAO;
@@ -49,7 +49,7 @@ public class FoodProductRepository {
         @Override
         protected Void doInBackground(final FoodProduct... params) {
             foodProductDAO.deleteAllFoodProduct();
-            foodProductDAO.deleteFoodProduct(params[0]);
+//            foodProductDAO.deleteFoodProduct(params[0]);
             return null;
         }
     }
