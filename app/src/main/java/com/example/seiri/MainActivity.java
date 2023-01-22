@@ -25,7 +25,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer) {
                 TextView textView = findViewById(R.id.tvNbFoodProduct);
-                textView.setText(integer + " Aliments dans votre liste :");
+                if (integer > 1) {
+                    textView.setText(integer + " " + getResources().getString(R.string.foods_in_your_list));
+                } else {
+                    textView.setText(integer + " " + getResources().getString(R.string.food_in_your_list));
+                }
             }
         });
     }

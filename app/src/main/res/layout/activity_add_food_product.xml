@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Name" />
+            android:text="@string/name" />
 
         <EditText
             android:id="@+id/edtNameFoodProduct"
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Expiry date :" />
+            android:text="@string/expiry_date" />
 
         <EditText
             android:id="@+id/edtDateFoodProduct"
@@ -55,5 +55,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="addFoodProduct"
-        android:text="Enregistrer" />
+        android:text="@string/action_add" />
 </LinearLayout>
