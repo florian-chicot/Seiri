@@ -77,8 +77,7 @@ public class MainActivity extends AppCompatActivity {
         foodProductViewModel.deleteAllFoodProduct();
     }
 
-    // à compléter
 //    public void deleteFoodProduct(View view) {
-//        foodProductViewModel.deleteFoodProduct(foodProduct);
+//
 //    }
 }
