@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         foodProductViewModel.getAllFoodProduct().observe(this, new Observer<List<FoodProduct>>() {
             @Override
             public void onChanged(List<FoodProduct> foodProducts) {
-
                 if (foodProductViewModel.getAllFoodProduct().getValue() != null) {
                     data = foodProductViewModel.getAllFoodProduct().getValue();
 
