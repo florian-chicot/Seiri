@@ -17,7 +17,13 @@ import java.util.List;
 
 public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.ViewHolder> {
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    private static InterfaceMyListener myListener;
+
+    public static void setMyListener(InterfaceMyListener myListener) {
+        FoodProductAdapter.myListener = myListener;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public TextView name;
         public TextView date;
 
@@ -27,6 +33,20 @@ public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.
 
             name = (TextView) itemView.findViewById(R.id.tvViewNameFoodProduct);
             date = (TextView) itemView.findViewById(R.id.tvViewDateFoodProduct);
+
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            myListener.onItemClick(getAdapterPosition(), view);
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            myListener.onItemLongClick(getAdapterPosition(), view);
+            return false;
         }
     }
 

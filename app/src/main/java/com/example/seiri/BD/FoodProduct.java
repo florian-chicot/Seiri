@@ -3,8 +3,10 @@ package com.example.seiri.BD;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public class FoodProduct {
+public class FoodProduct implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;

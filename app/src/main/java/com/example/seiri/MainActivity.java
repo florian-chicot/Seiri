@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.seiri.BD.FoodProduct;
 import com.example.seiri.BD.FoodProductViewModel;
 import com.example.seiri.Tools.FoodProductAdapter;
+import com.example.seiri.Tools.InterfaceMyListener;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,10 +22,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private FoodProductViewModel foodProductViewModel;
-
     private List<FoodProduct> data;
-
     private LinearLayoutManager linearLayoutManager;
+    private FoodProductAdapter foodProductAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +61,31 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        foodProductAdapter = new FoodProductAdapter(data);
+        rvFoodProduct.setAdapter(foodProductAdapter);
+
+        foodProductAdapter.setMyListener(new InterfaceMyListener() {
+            @Override
+            public void onItemClick(int position, View view) {
+                FoodProduct foodProduct = data.get(position);
+                Intent intent = new Intent(view.getContext(), UpdateFoodProduct.class);
+
+                intent.putExtra("foodProduct", foodProduct);
+
+                startActivity(intent);
+            }
+
+            @Override
+            public void onItemLongClick(int position, View view) {
+                FoodProduct foodProduct = data.get(position);
+                foodProductViewModel.deleteFoodProduct(foodProduct);
+                data.remove(position);
+            }
+        });
     }
 
     public void viewAddFoodProduct(View view) {
-        Intent intent = new Intent(view.getContext(), AddFoodProduct.class);
-        startActivity(intent);
-    }
-
-    public void viewUpdateFoodProduct(View view) {
         Intent intent = new Intent(view.getContext(), AddFoodProduct.class);
         startActivity(intent);
     }
@@ -77,7 +94,4 @@ public class MainActivity extends AppCompatActivity {
         foodProductViewModel.deleteAllFoodProduct();
     }
 
-//    public void deleteFoodProduct(View view) {
-//
-//    }
 }
