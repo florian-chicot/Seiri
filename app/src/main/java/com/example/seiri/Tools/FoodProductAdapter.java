@@ -76,7 +76,7 @@ public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.
         FoodProduct foodProduct = listFoodProduct.get(position);
 
         TextView name = holder.name;
-        name.setText(foodProduct.getName());
+        name.setText(foodProduct.getQuantity() + " " + foodProduct.getName());
 
         TextView date = holder.date;
         // date format YYYYYMMDD

@@ -12,9 +12,12 @@ public class FoodProduct implements Serializable {
     private String name;
     private String expiryDate;
 
-    public FoodProduct(String name, String expiryDate) {
+    private String quantity;
+
+    public FoodProduct(String name, String expiryDate, String quantity) {
         this.name = name;
         this.expiryDate = expiryDate;
+        this.quantity = quantity;
     }
 
     public int getId() {
@@ -39,5 +42,13 @@ public class FoodProduct implements Serializable {
 
     public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 }

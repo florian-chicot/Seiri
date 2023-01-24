@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.seiri.BD.FoodProduct;
 import com.example.seiri.BD.FoodProductViewModel;
@@ -18,8 +19,11 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class UpdateFoodProduct extends AppCompatActivity {
-    FoodProductViewModel foodProductViewModel;
     EditText edtUpdateNameFoodProduct;
+    EditText edtUpdateQuantityFoodProduct;
+
+    FoodProductViewModel foodProductViewModel;
+
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
 
@@ -31,8 +35,10 @@ public class UpdateFoodProduct extends AppCompatActivity {
         foodProductViewModel = new ViewModelProvider(this).get(FoodProductViewModel.class);
 
         edtUpdateNameFoodProduct = findViewById(R.id.edtUpdateNameFoodProduct);
-        initDatePicker();
         dateButton = findViewById(R.id.btnUpdateDateFoodProduct);
+        edtUpdateQuantityFoodProduct = findViewById(R.id.edtUpdateQuantityFoodProduct);
+
+        initDatePicker();
 
         Intent intent = getIntent();
 
@@ -50,6 +56,7 @@ public class UpdateFoodProduct extends AppCompatActivity {
             String formattedDate = d.substring(6,8) + "." + d.substring(4,6) + "." + d.substring(0,4);
             dateButton.setText(formattedDate);
         }
+        edtUpdateQuantityFoodProduct.setText(foodProduct.getQuantity());
     }
 
     public void updateFoodProduct(View view) {
@@ -59,12 +66,16 @@ public class UpdateFoodProduct extends AppCompatActivity {
 
         EditText updatedName = findViewById(R.id.edtUpdateNameFoodProduct);
         Button updatedExpiryDate = findViewById(R.id.btnUpdateDateFoodProduct);
+        edtUpdateNameFoodProduct = findViewById(R.id.edtUpdateNameFoodProduct);
+        edtUpdateQuantityFoodProduct = findViewById(R.id.edtUpdateQuantityFoodProduct);
 
         String updatedNameFP = updatedName.getText().toString();
         // date format DD MM YYYYY
         String updatedExpiryDateFP = updatedExpiryDate.getText().toString();
         // date format YYYYYMMDD
         String formattedUpdatedExpiryDateFP = updatedExpiryDateFP.substring(6,10) + updatedExpiryDateFP.substring(3,5) + updatedExpiryDateFP.substring(0,2);
+        foodProduct.setName(edtUpdateNameFoodProduct.getText().toString());
+        foodProduct.setQuantity(edtUpdateQuantityFoodProduct.getText().toString());
 
         foodProduct.setName(updatedNameFP);
         foodProduct.setExpiryDate(formattedUpdatedExpiryDateFP);

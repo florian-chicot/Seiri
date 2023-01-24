@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.seiri.BD.FoodProduct;
 import com.example.seiri.BD.FoodProductViewModel;
@@ -57,15 +58,17 @@ public class AddFoodProduct extends AppCompatActivity {
     public void addFoodProduct(View view) {
 
         EditText name = findViewById(R.id.edtNameFoodProduct);
+        EditText quantity = findViewById(R.id.edtQuantityFoodProduct);
         Button expiryDate = findViewById(R.id.btnDateFoodProduct);
 
         String nameFP = name.getText().toString();
         // date format DD MM YYYYY
         String expiryDateFP = expiryDate.getText().toString();
+        String quantityFP = quantity.getText().toString();
         // date format YYYYYMMDD
         String formattedExpiryDateFP = expiryDateFP.substring(6,10) + expiryDateFP.substring(3,5) + expiryDateFP.substring(0,2);
 
-        FoodProduct foodProduct = new FoodProduct(nameFP, formattedExpiryDateFP);
+        FoodProduct foodProduct = new FoodProduct(nameFP, formattedExpiryDateFP, quantityFP);
 
         foodProductViewModel.insert(foodProduct);
 
