@@ -53,7 +53,7 @@
           android:ems="10"
           android:onClick="openDatePicker"
           android:text="01/01/2023"
-          android:textColor="@color/black" />
+          android:textColor="@color/textLightAndDarkTheme"/>
 
     </LinearLayout>
 

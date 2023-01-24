@@ -83,12 +83,12 @@ public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.
         String d = foodProduct.getExpiryDate();
         if (Locale.getDefault().getLanguage().equals("fr")) {
             // date format DD/MM/YYYYY
-            String formatedDate = d.substring(6,8) + "/" + d.substring(4,6) + "/" + d.substring(0,4);
-            date.setText(formatedDate);
+            String formattedDate = d.substring(6,8) + "/" + d.substring(4,6) + "/" + d.substring(0,4);
+            date.setText(formattedDate);
         } else {
             // date format DD.MM.YYYYY
-            String formatedDate = d.substring(6,8) + "." + d.substring(4,6) + "." + d.substring(0,4);
-            date.setText(formatedDate);
+            String formattedDate = d.substring(6,8) + "." + d.substring(4,6) + "." + d.substring(0,4);
+            date.setText(formattedDate);
         }
     }
 
