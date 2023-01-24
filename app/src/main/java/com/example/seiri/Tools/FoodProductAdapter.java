@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.seiri.BD.FoodProduct;
@@ -63,7 +62,7 @@ public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View foodProductView = inflater.inflate(R.layout.food_froduct_layout, parent, false);
+        View foodProductView = inflater.inflate(R.layout.food_product_layout, parent, false);
 
         // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(foodProductView);

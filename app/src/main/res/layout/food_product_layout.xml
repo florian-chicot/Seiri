@@ -15,22 +15,12 @@
             android:id="@+id/tvViewNameFoodProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="tvViewNameFoodProduct" />
+            android:text="" />
 
         <TextView
             android:id="@+id/tvViewDateFoodProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="tvViewDateFoodProduct" />
-
+            android:text="" />
     </LinearLayout>
-
-    <ImageButton
-      android:id="@+id/btnDeleteFoodProduct"
-      android:layout_width="69dp"
-      android:layout_height="match_parent"
-      android:layout_weight="1"
-      android:background="@null"
-      app:srcCompat="@android:drawable/ic_menu_delete" />
-
 </LinearLayout>
