@@ -17,6 +17,7 @@ import com.example.seiri.BD.FoodProduct;
 import com.example.seiri.BD.FoodProductViewModel;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class AddFoodProduct extends AppCompatActivity {
     private FoodProductViewModel foodProductViewModel;
@@ -46,7 +47,7 @@ public class AddFoodProduct extends AppCompatActivity {
     public void addFoodProduct(View view) {
 
         EditText name = findViewById(R.id.edtNameFoodProduct);
-        EditText expiryDate = findViewById(R.id.edtDateFoodProduct);
+        Button expiryDate = findViewById(R.id.btnDateFoodProduct);
 
         String nameFP = name.getText().toString();
         String expiryDateFP = expiryDate.getText().toString();
@@ -74,43 +75,46 @@ public class AddFoodProduct extends AppCompatActivity {
         int month = cal.get(Calendar.MONTH);
         int day = cal.get(Calendar.DAY_OF_MONTH);
 
-        int style = AlertDialog.THEME_DEVICE_DEFAULT_LIGHT;
-        datePickerDialog = new DatePickerDialog(this,style, dateSetListener, year, month, day);
+        datePickerDialog = new DatePickerDialog(this, dateSetListener, year, month, day);
     }
 
     private String dateToString(int day, int month, int year) {
-        return day + "/" + getMonthFormat(month) + "/" + year;
+        if (Locale.getDefault().getLanguage().equals("fr")) {
+            return getDateFormat(day) + "/" + getDateFormat(month) + "/" + year;
+        } else {
+            return getDateFormat(day) + "." + getDateFormat(month) + "." + year;
+        }
     }
 
-    private String getMonthFormat(int month) {
-        switch (month) {
-            case 1:
-                return getResources().getString(R.string.january_short);
-            case 2:
-                return getResources().getString(R.string.february_short);
-            case 3:
-                return getResources().getString(R.string.march_short);
-            case 4:
-                return getResources().getString(R.string.april_short);
-            case 5:
-                return getResources().getString(R.string.may_short);
-            case 6:
-                return getResources().getString(R.string.june_short);
-            case 7:
-                return getResources().getString(R.string.july_short);
-            case 8:
-                return getResources().getString(R.string.august_short);
-            case 9:
-                return getResources().getString(R.string.september_short);
-            case 10:
-                return getResources().getString(R.string.october_short);
-            case 11:
-                return getResources().getString(R.string.november_short);
-            case 12:
-                return getResources().getString(R.string.december_short);
-            default:
-                return getResources().getString(R.string.january_short);
+    private String getDateFormat(int i) {
+        if (i == 1) {
+            return "01";
         }
+        if (i == 2) {
+            return "02";
+        }
+        if (i == 3) {
+            return "03";
+        }
+        if (i == 4) {
+            return "04";
+        }
+        if (i == 5) {
+            return "05";
+        }
+        if (i == 6) {
+            return "06";
+        }
+        if (i == 7) {
+            return "07";
+        }
+        if (i == 8) {
+            return "08";
+        }
+        if (i == 9) {
+            return "09";
+        }
+        return "01";
     }
 
     public void openDatePicker(View view) {
