@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.seiri.BD.FoodProduct;
 import com.example.seiri.BD.FoodProductViewModel;
@@ -31,7 +30,6 @@ public class AddFoodProduct extends AppCompatActivity {
         foodProductViewModel = new ViewModelProvider(this).get(FoodProductViewModel.class);
         initDatePicker();
         dateButton = findViewById(R.id.btnDateFoodProduct);
-//        dateButton.setText(getTodaysDate());
         // date format YYYYYMMDD
         String d = getTodaysDate();
         if (Locale.getDefault().getLanguage().equals("fr")) {

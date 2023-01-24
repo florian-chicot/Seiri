@@ -1,6 +1,5 @@
 package com.example.seiri;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,8 +15,6 @@ import com.example.seiri.BD.FoodProductViewModel;
 import com.example.seiri.Tools.FoodProductAdapter;
 import com.example.seiri.Tools.InterfaceMyListener;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
