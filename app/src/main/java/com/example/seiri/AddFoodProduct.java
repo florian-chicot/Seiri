@@ -27,11 +27,13 @@ public class AddFoodProduct extends AppCompatActivity {
 
         EditText name = findViewById(R.id.edtNameFoodProduct);
         EditText expiryDate = findViewById(R.id.edtDateFoodProduct);
+        EditText quantity = findViewById(R.id.edtQuantityFoodProduct);
 
         String nameFP = name.getText().toString();
         String expiryDateFP = expiryDate.getText().toString();
+        String quantityFP = quantity.getText().toString();
 
-        FoodProduct foodProduct = new FoodProduct(nameFP, expiryDateFP);
+        FoodProduct foodProduct = new FoodProduct(nameFP, expiryDateFP, quantityFP);
 
         foodProductViewModel.insert(foodProduct);
 

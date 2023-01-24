@@ -15,6 +15,8 @@ import com.example.seiri.BD.FoodProductViewModel;
 public class UpdateFoodProduct extends AppCompatActivity {
     EditText edtUpdateNameFoodProduct;
     EditText edtUpdateDateFoodProduct;
+
+    EditText edtUpdateQuantityFoodProduct;
     FoodProductViewModel foodProductViewModel;
 
     @Override
@@ -26,6 +28,7 @@ public class UpdateFoodProduct extends AppCompatActivity {
 
         edtUpdateNameFoodProduct = findViewById(R.id.edtUpdateNameFoodProduct);
         edtUpdateDateFoodProduct = findViewById(R.id.edtUpdateDateFoodProduct);
+        edtUpdateQuantityFoodProduct = findViewById(R.id.edtUpdateQuantityFoodProduct);
 
         Intent intent = getIntent();
 
@@ -33,6 +36,7 @@ public class UpdateFoodProduct extends AppCompatActivity {
 
         edtUpdateNameFoodProduct.setText(foodProduct.getName());
         edtUpdateDateFoodProduct.setText(foodProduct.getExpiryDate());
+        edtUpdateQuantityFoodProduct.setText(foodProduct.getQuantity());
     }
 
     public void updateFoodProduct(View view) {
@@ -42,9 +46,11 @@ public class UpdateFoodProduct extends AppCompatActivity {
 
         edtUpdateNameFoodProduct = findViewById(R.id.edtUpdateNameFoodProduct);
         edtUpdateDateFoodProduct = findViewById(R.id.edtUpdateDateFoodProduct);
+        edtUpdateQuantityFoodProduct = findViewById(R.id.edtUpdateQuantityFoodProduct);
 
         foodProduct.setName(edtUpdateNameFoodProduct.getText().toString());
         foodProduct.setExpiryDate(edtUpdateDateFoodProduct.getText().toString());
+        foodProduct.setQuantity(edtUpdateQuantityFoodProduct.getText().toString());
 
         foodProductViewModel.updateFoodProduct(foodProduct);
 
