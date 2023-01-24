@@ -38,20 +38,23 @@
 
         <TextView
           android:id="@+id/tvDateFoodProduct"
-          android:layout_width="80dp"
+          android:layout_width="154dp"
           android:layout_height="wrap_content"
           android:layout_marginLeft="12dp"
           android:layout_weight="1"
           android:text="@string/expiry_date" />
 
-        <EditText
-            android:id="@+id/edtDateFoodProduct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="date" />
+        <Button
+          android:id="@+id/btnDateFoodProduct"
+          style="?android:spinnerStyle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="12dp"
+          android:ems="10"
+          android:onClick="openDatePicker"
+          android:text="01/01/2023"
+          android:textColor="@color/textLightAndDarkTheme"/>
+
     </LinearLayout>
 
     <Button
