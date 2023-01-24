@@ -63,9 +63,9 @@ public class AddFoodProduct extends AppCompatActivity {
         // date format DD MM YYYYY
         String expiryDateFP = expiryDate.getText().toString();
         // date format YYYYYMMDD
-        String formattedexpiryDateFP = expiryDateFP.substring(6,10) + expiryDateFP.substring(3,5) + expiryDateFP.substring(0,2);
+        String formattedExpiryDateFP = expiryDateFP.substring(6,10) + expiryDateFP.substring(3,5) + expiryDateFP.substring(0,2);
 
-        FoodProduct foodProduct = new FoodProduct(nameFP, formattedexpiryDateFP);
+        FoodProduct foodProduct = new FoodProduct(nameFP, formattedExpiryDateFP);
 
         foodProductViewModel.insert(foodProduct);
 

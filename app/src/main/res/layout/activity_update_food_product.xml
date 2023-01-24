@@ -44,14 +44,16 @@
             android:layout_weight="1"
             android:text="@string/expiry_date" />
 
-        <EditText
-            android:id="@+id/edtUpdateDateFoodProduct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="date" />
+        <Button
+          android:id="@+id/btnUpdateDateFoodProduct"
+          style="?android:spinnerStyle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="12dp"
+          android:ems="10"
+          android:onClick="openDatePicker"
+          android:text="01/01/2023"
+          android:textColor="@color/textLightAndDarkTheme"/>
 
     </LinearLayout>
 
