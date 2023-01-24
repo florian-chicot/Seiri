@@ -41,7 +41,12 @@ public class AddFoodProduct extends AppCompatActivity {
         int month = cal.get(Calendar.MONTH);
         month = month + 1;
         int day = cal.get(Calendar.DAY_OF_MONTH);
-        return dateToString(day, month, year);
+        String date = dateToString(day, month, year);
+        if (Locale.getDefault().getLanguage().equals("fr")) {
+            return date.substring(6,8) + "/" + date.substring(4,6) + "/" + date.substring(0,4);
+        } else {
+            return date.substring(6,8) + "." + date.substring(4,6) + "." + date.substring(0,4);
+        }
     }
 
     public void addFoodProduct(View view) {
@@ -66,7 +71,13 @@ public class AddFoodProduct extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 month = month + 1;
                 String date = dateToString(day, month, year);
-                dateButton.setText(date);
+                if (Locale.getDefault().getLanguage().equals("fr")) {
+                    String formattedDate = date.substring(6,8) + "/" + date.substring(4,6) + "/" + date.substring(0,4);
+                    dateButton.setText(formattedDate);
+                } else {
+                    String formattedDate = date.substring(6,8) + "." + date.substring(4,6) + "." + date.substring(0,4);
+                    dateButton.setText(formattedDate);
+                }
             }
         };
 
@@ -79,11 +90,7 @@ public class AddFoodProduct extends AppCompatActivity {
     }
 
     private String dateToString(int day, int month, int year) {
-        if (Locale.getDefault().getLanguage().equals("fr")) {
-            return getDateFormat(day) + "/" + getDateFormat(month) + "/" + year;
-        } else {
-            return getDateFormat(day) + "." + getDateFormat(month) + "." + year;
-        }
+        return year + getDateFormat(month) + getDateFormat(day);
     }
 
     private String getDateFormat(int i) {

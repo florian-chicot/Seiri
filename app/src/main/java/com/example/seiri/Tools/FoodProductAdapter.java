@@ -13,6 +13,7 @@ import com.example.seiri.BD.FoodProduct;
 import com.example.seiri.R;
 
 import java.util.List;
+import java.util.Locale;
 
 public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.ViewHolder> {
 
@@ -78,7 +79,17 @@ public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.
         name.setText(foodProduct.getName());
 
         TextView date = holder.date;
-        date.setText(foodProduct.getExpiryDate());
+        // date format YYYYYMMDD
+        String d = foodProduct.getExpiryDate();
+        if (Locale.getDefault().getLanguage().equals("fr")) {
+            // date format DD/MM/YYYYY
+            String formatedDate = d.substring(6,8) + "/" + d.substring(4,6) + "/" + d.substring(0,4);
+            date.setText(formatedDate);
+        } else {
+            // date format DD.MM.YYYYY
+            String formatedDate = d.substring(6,8) + "." + d.substring(4,6) + "." + d.substring(0,4);
+            date.setText(formatedDate);
+        }
     }
 
     @Override
