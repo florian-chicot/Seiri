@@ -7,4 +7,8 @@
   <string name="foods_in_your_list">aliments dans votre liste</string>
   <string name="action_add">Ajouter</string>
   <string name="action_update">Modifier</string>
+  <string name="delete_all">Tout supprimer ?</string>
+  <string name="sure_delete_all">Etes-vous sûr de vouloir supprimer tout les produits ?</string>
+  <string name="yes">Oui</string>
+  <string name="no">Non</string>
 </resources>
