@@ -2,6 +2,7 @@
     <string name="app_name" translatable="false">Seiri</string>
     <string name="name">Name</string>
     <string name="expiry_date">Expiry date</string>
+    <string name="quantity">Quantity</string>
     <string name="food_in_your_list">food in your list</string>
     <string name="foods_in_your_list">foods in your list</string>
     <string name="action_add">Add</string>

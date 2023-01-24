@@ -15,12 +15,16 @@
             android:id="@+id/tvViewNameFoodProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="tvViewNameFoodProduct" />
 
         <TextView
             android:id="@+id/tvViewDateFoodProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:paddingBottom="12dp"
+            android:textSize="18sp"
+            android:text="tvViewDateFoodProduct" />
     </LinearLayout>
 </LinearLayout>

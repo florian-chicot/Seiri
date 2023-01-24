@@ -2,6 +2,7 @@
 <resources>
   <string name="name">Nom</string>
   <string name="expiry_date">Date d\'expiration</string>
+  <string name="quantity">Quantité</string>
   <string name="food_in_your_list">aliment dans votre liste</string>
   <string name="foods_in_your_list">aliments dans votre liste</string>
   <string name="action_add">Ajouter</string>
