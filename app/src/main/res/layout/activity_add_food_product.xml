@@ -52,7 +52,6 @@
           android:layout_marginRight="12dp"
           android:ems="10"
           android:onClick="openDatePicker"
-
           android:text="01/01/2023"
           android:textColor="@color/black" />
 

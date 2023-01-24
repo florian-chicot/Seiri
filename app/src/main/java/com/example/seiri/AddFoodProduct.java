@@ -114,7 +114,7 @@ public class AddFoodProduct extends AppCompatActivity {
         if (i == 9) {
             return "09";
         }
-        return "01";
+        return Integer.toString(i);
     }
 
     public void openDatePicker(View view) {
