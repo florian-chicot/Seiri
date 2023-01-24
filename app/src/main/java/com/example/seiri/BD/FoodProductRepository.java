@@ -35,9 +35,6 @@ public class FoodProductRepository {
         new DeleteAsyncTask(foodProductDAO).execute();
     }
 
-    public void deleteFoodProduct(FoodProduct foodProduct) {
-        new DeleteAsyncTask(foodProductDAO).execute();
-    }
 
     private static class DeleteAsyncTask extends AsyncTask<FoodProduct, Void, Void> {
         private FoodProductDAO foodProductDAO;
@@ -49,7 +46,6 @@ public class FoodProductRepository {
         @Override
         protected Void doInBackground(final FoodProduct... params) {
             foodProductDAO.deleteAllFoodProduct();
-            foodProductDAO.deleteFoodProduct(params[0]);
             return null;
         }
     }
@@ -58,8 +54,12 @@ public class FoodProductRepository {
         new InsertThread(foodProductDAO).execute(w);
     }
 
+    public void deleteFoodProduct(FoodProduct w) {
+        new InsertThread(foodProductDAO).execute2(w);
+    }
+
     public void updateFoodProduct(FoodProduct w) {
-        new InsertThread(foodProductDAO).execute(w);
+        new InsertThread(foodProductDAO).execute3(w);
     }
 
     public static class InsertThread {
@@ -78,6 +78,24 @@ public class FoodProductRepository {
                 @Override
                 public void run() {
                     foodProductDAO.insert(foodProduct);
+                    // foodProductDAO.updateFoodProduct(foodProduct);
+                }
+            });
+        }
+
+        public void execute2(FoodProduct foodProduct) {
+            executorService.execute(new Runnable() {
+                @Override
+                public void run() {
+                    foodProductDAO.deleteFoodProduct(foodProduct);
+                }
+            });
+        }
+
+        public void execute3(FoodProduct foodProduct) {
+            executorService.execute(new Runnable() {
+                @Override
+                public void run() {
                     foodProductDAO.updateFoodProduct(foodProduct);
                 }
             });
