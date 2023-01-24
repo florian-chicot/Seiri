@@ -6,4 +6,16 @@
     <string name="foods_in_your_list">foods in your list</string>
     <string name="action_add">Add</string>
     <string name="action_update">Update</string>
+    <string name="january_short">JAN</string>
+    <string name="february_short">FEB</string>
+    <string name="march_short">MAR</string>
+    <string name="april_short">APR</string>
+    <string name="may_short">MAY</string>
+    <string name="june_short">JUN</string>
+    <string name="july_short">JUL</string>
+    <string name="august_short">AUG</string>
+    <string name="september_short">SEPT</string>
+    <string name="october_short">OCT</string>
+    <string name="november_short">NOV</string>
+    <string name="december_short">DEC</string>
 </resources>

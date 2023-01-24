@@ -52,6 +52,18 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="date" />
+
+        <Button
+          android:id="@+id/btnDateFoodProduct"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="01/01/2023"
+          android:onClick="openDatePicker"
+
+          android:textColor="@color/black"
+          style="?android:spinnerStyle"
+        />
+
     </LinearLayout>
 
     <Button
