@@ -8,8 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 
 import com.example.seiri.BD.FoodProduct;
 import com.example.seiri.BD.FoodProductViewModel;
@@ -41,6 +44,27 @@ public class AddFoodProduct extends AppCompatActivity {
             String formattedDate = d.substring(6,8) + "." + d.substring(4,6) + "." + d.substring(0,4);
             dateButton.setText(formattedDate);
         }
+
+        final Switch SwBarcode = findViewById(R.id.SwBarcode);
+        final LinearLayout llBarcodeFoodProduct = findViewById(R.id.llBarcodeFoodProduct);
+        final LinearLayout llNameFoodProduct = findViewById(R.id.llNameFoodProduct);
+
+        // default switch checked  = false
+        llBarcodeFoodProduct.setVisibility(View.GONE);
+        llNameFoodProduct.setVisibility(View.VISIBLE);
+        SwBarcode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    llBarcodeFoodProduct.setVisibility(View.VISIBLE);
+                    llNameFoodProduct.setVisibility(View.GONE);
+                } else {
+                    llBarcodeFoodProduct.setVisibility(View.GONE);
+                    llNameFoodProduct.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
     }
 
     private String getTodaysDate() {
