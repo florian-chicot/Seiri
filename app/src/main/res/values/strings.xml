@@ -11,4 +11,5 @@
     <string name="sure_delete_all">Are you sure you want to remove all products?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="barcode">Barcode</string>
 </resources>
