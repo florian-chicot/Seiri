@@ -45,14 +45,6 @@ public class AddFoodProduct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_food_product);
 
-//        Button buttonapi = findViewById(R.id.testapi);
-//        buttonapi.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                testapi(Strin);
-//            }
-//        });
-
         foodProductViewModel = new ViewModelProvider(this).get(FoodProductViewModel.class);
         initDatePicker();
         dateButton = findViewById(R.id.btnDateFoodProduct);
@@ -92,8 +84,6 @@ public class AddFoodProduct extends AppCompatActivity {
 
     private JSONObject testapi(String barcodeFP) {
         EditText barcode = findViewById(R.id.edtBarcodeFoodProduct);
-//        String barcodeFP = barcode.getText().toString();
-//        String barcodeFP = "3256223014516"; // Sirop de citron
         URL urlFoodProduct = createUrl(barcodeFP);
         GetProductByBarcodeAsyncTask getProductByBarcodeAsyncTask = new GetProductByBarcodeAsyncTask(urlFoodProduct);
         try {
@@ -189,6 +179,7 @@ public class AddFoodProduct extends AppCompatActivity {
 
         EditText barcode = findViewById(R.id.edtBarcodeFoodProduct);
         String nameFP = "Unknown";
+        String pathImg = "Unknown";
         Switch swBarcode = findViewById(R.id.SwBarcode);
         if (swBarcode.isChecked()) {
             String barcodeFP = barcode.getText().toString();
@@ -196,11 +187,13 @@ public class AddFoodProduct extends AppCompatActivity {
             try {
                 assert jsonObject != null;
                 nameFP = jsonObject.getJSONObject("product").getString("product_name");
+                pathImg = jsonObject.getJSONObject("product").getString("image_front_small_url");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         } else {
             nameFP = name.getText().toString();
+            pathImg = "Unknown";
         }
 
         // date format DD MM YYYYY
@@ -209,7 +202,7 @@ public class AddFoodProduct extends AppCompatActivity {
         // date format YYYYYMMDD
         String formattedExpiryDateFP = expiryDateFP.substring(6,10) + expiryDateFP.substring(3,5) + expiryDateFP.substring(0,2);
 
-        FoodProduct foodProduct = new FoodProduct(nameFP, formattedExpiryDateFP, quantityFP);
+        FoodProduct foodProduct = new FoodProduct(nameFP, formattedExpiryDateFP, quantityFP, pathImg);
 
         foodProductViewModel.insert(foodProduct);
 
