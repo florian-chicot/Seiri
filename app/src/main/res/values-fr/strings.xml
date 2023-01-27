@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="name">Nom</string>
+  <string name="expiry_date">Date d\'expiration</string>
+  <string name="quantity">Quantité</string>
+  <string name="food_in_your_list">aliment dans votre liste</string>
+  <string name="foods_in_your_list">aliments dans votre liste</string>
+  <string name="action_add">Ajouter</string>
+  <string name="action_update">Modifier</string>
+  <string name="delete_all">Tout supprimer ?</string>
+  <string name="sure_delete_all">Etes-vous sûr de vouloir supprimer tout les produits ?</string>
+  <string name="yes">Oui</string>
+  <string name="no">Non</string>
+  <string name="barcode">Code-barres</string>
+</resources>
