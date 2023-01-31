@@ -7,7 +7,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -108,7 +107,6 @@ public class AddFoodProduct extends AppCompatActivity {
             HttpsURLConnection connection = null;
             try {
                 connection = (HttpsURLConnection) this.url.openConnection();
-                Log.d("MyLogs", String.valueOf(this.url.openConnection()));
 
                 connection.setConnectTimeout(5000);
                 int response = connection.getResponseCode();
@@ -123,8 +121,6 @@ public class AddFoodProduct extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     return new JSONObject(builder.toString());
-                } else {
-                    Log.d("MyLogs", "Response "+ String.valueOf(response));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -134,17 +130,6 @@ public class AddFoodProduct extends AppCompatActivity {
                 connection.disconnect();
             }
             return null;
-        }
-
-        @Override
-        protected void onPostExecute(JSONObject jsonObject) {
-            if (jsonObject != null) {
-                try {
-                    Log.d("MyLogs", "onPostExecute: " + jsonObject.toString(1));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 

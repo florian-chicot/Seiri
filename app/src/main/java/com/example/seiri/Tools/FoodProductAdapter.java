@@ -1,8 +1,6 @@
 package com.example.seiri.Tools;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.seiri.BD.FoodProduct;
 import com.example.seiri.R;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import com.squareup.picasso.Picasso;
 import java.util.List;
 import java.util.Locale;
 
@@ -85,8 +78,6 @@ public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         FoodProduct foodProduct = listFoodProduct.get(position);
 
-        URL urlPictureFP = null;
-
         TextView name = holder.name;
         name.setText(foodProduct.getQuantity() + " " + foodProduct.getName());
 
@@ -103,26 +94,8 @@ public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.
             date.setText(formattedDate);
         }
 
-        try {
-            urlPictureFP = new URL(foodProduct.getImageURL());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
         ImageView pictureFP = holder.pictureFP;
-
-        Bitmap bitmap = null;
-        try {
-            assert urlPictureFP != null;
-            HttpURLConnection connection = (HttpURLConnection) urlPictureFP.openConnection();
-            InputStream inputStream = connection.getInputStream();
-            bitmap = BitmapFactory.decodeStream(inputStream);
-            pictureFP.setImageBitmap(bitmap);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Picasso.get().load(foodProduct.getImageURL()).into(pictureFP);
     }
 
     @Override
