@@ -12,12 +12,16 @@ public class FoodProductViewModel extends AndroidViewModel {
     private FoodProductRepository foodProductRepository;
     private LiveData<Integer> nbFoodProduct;
     private LiveData<List<FoodProduct>> allFoodProduct;
+    private List<FoodProductWithCategory> foodProductWithCategories;
+    private List<CategoryWithFoodProduct> categoryWithFoodProducts;
 
     public FoodProductViewModel(@NonNull Application application) {
         super(application);
         foodProductRepository = new FoodProductRepository(application);
         nbFoodProduct = foodProductRepository.getNbFoodProducts();
         allFoodProduct = foodProductRepository.getAllFoodProduct();
+        foodProductWithCategories = foodProductRepository.getFoodProductWithCategories();
+        categoryWithFoodProducts = foodProductRepository.getCategoryWithFoodProducts();
     }
 
     public LiveData<Integer> getNbFoodProduct() {
@@ -26,6 +30,14 @@ public class FoodProductViewModel extends AndroidViewModel {
 
     public LiveData<List<FoodProduct>> getAllFoodProduct() {
         return allFoodProduct;
+    }
+
+    public List<FoodProductWithCategory> getFoodProductWithCategories() {
+        return foodProductWithCategories;
+    }
+
+    public List<CategoryWithFoodProduct> getCategoryWithFoodProducts() {
+        return categoryWithFoodProducts;
     }
 
     public void insert(FoodProduct foodProduct) {
