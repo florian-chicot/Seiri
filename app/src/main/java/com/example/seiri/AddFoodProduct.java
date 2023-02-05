@@ -1,9 +1,12 @@
 package com.example.seiri;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,11 +16,15 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 
 import com.example.seiri.BD.FoodProduct;
 import com.example.seiri.BD.FoodProductViewModel;
+import com.example.seiri.Tools.CaptureAct;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,6 +44,8 @@ public class AddFoodProduct extends AppCompatActivity {
     private FoodProductViewModel foodProductViewModel;
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
+
+    private ImageButton btnBarcodeScanner;
 
     String baseUrlProduct = "https://world.openfoodfacts.org/api/v0/product/";
 
@@ -71,6 +80,10 @@ public class AddFoodProduct extends AppCompatActivity {
         final Switch SwBarcode = findViewById(R.id.SwBarcode);
         final LinearLayout llBarcodeFoodProduct = findViewById(R.id.llBarcodeFoodProduct);
         final LinearLayout llNameFoodProduct = findViewById(R.id.llNameFoodProduct);
+        btnBarcodeScanner = findViewById(R.id.btnBarcodeScanner);
+        btnBarcodeScanner.setOnClickListener(v -> {
+            scanCode();
+        });
 
         // default switch checked  = false
         llBarcodeFoodProduct.setVisibility(View.GONE);
@@ -276,4 +289,34 @@ public class AddFoodProduct extends AppCompatActivity {
     public void openDatePicker(View view) {
         datePickerDialog.show();
     }
+
+    public void scanCode() {
+        ScanOptions options = new ScanOptions();
+        options.setPrompt("Tets");
+        options.setBeepEnabled(true);
+        options.setOrientationLocked(true);
+        options.setCaptureActivity(CaptureAct.class);
+        barLauncher.launch(options);
+    }
+
+    ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
+        if (result.getContents() != null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(AddFoodProduct.this);
+            builder.setTitle("Result");
+            builder.setMessage(result.getContents());
+            builder.setPositiveButton("Ouiii", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            builder.setNegativeButton("Nooon", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+            builder.create().show();
+        }
+    });
 }
