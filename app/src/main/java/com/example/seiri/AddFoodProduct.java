@@ -172,13 +172,17 @@ public class AddFoodProduct extends AppCompatActivity {
             try {
                 assert jsonObject != null;
                 nameFP = jsonObject.getJSONObject("product").getString("product_name");
-                pathImg = jsonObject.getJSONObject("product").getString("image_front_small_url");
+                if (jsonObject.getJSONObject("product").has("image_url")) {
+                    pathImg = jsonObject.getJSONObject("product").getString("image_url");
+                } else {
+                    pathImg = "https://upload.wikimedia.org/wikipedia/en/5/5a/Black_question_mark.png";
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         } else {
             nameFP = name.getText().toString();
-            pathImg = "Unknown";
+            pathImg = "https://upload.wikimedia.org/wikipedia/en/5/5a/Black_question_mark.png";
         }
 
         // date format DD MM YYYYY
