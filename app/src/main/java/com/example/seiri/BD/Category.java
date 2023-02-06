@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Category {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int categoryId;
 
     private String name;
 
@@ -14,12 +14,12 @@ public class Category {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getName() {
