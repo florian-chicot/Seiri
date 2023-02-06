@@ -6,10 +6,6 @@
   android:layout_height="wrap_content"
   android:orientation="horizontal">
 
-    <androidx.cardview.widget.CardView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent" >
-
     <ImageView
       android:id="@+id/pictureFP"
       android:layout_width="128dp"
@@ -42,6 +38,5 @@
               android:text="tvViewDateFoodProduct"
               android:textSize="18sp" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
