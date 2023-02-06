@@ -19,11 +19,11 @@ public class FoodProduct implements Serializable {
         this.quantity = quantity;
     }
 
-    public int getId() {
+    public int getFoodProductId() {
         return foodProductId;
     }
 
-    public void setId(int foodProductId) {
+    public void setFoodProductId(int foodProductId) {
         this.foodProductId = foodProductId;
     }
 

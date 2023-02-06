@@ -30,12 +30,4 @@ public interface FoodProductDAO {
 
     @Query("SELECT count(*) from FoodProduct")
     LiveData<Integer> nbFoodProducts();
-
-    @Transaction
-    @Query("SELECT * FROM FoodProduct")
-    public List<FoodProductWithCategory> getFoodProducts();
-
-    @Transaction
-    @Query("SELECT * FROM Category")
-    public List<CategoryWithFoodProduct> getCategories();
 }
