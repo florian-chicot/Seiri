@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.seiri.BD.FoodProduct;
 import com.example.seiri.R;
-
+import com.squareup.picasso.Picasso;
 import java.util.List;
 import java.util.Locale;
 
@@ -26,6 +27,7 @@ public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public TextView name;
         public TextView date;
+        public ImageView pictureFP;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -33,6 +35,7 @@ public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.
 
             name = (TextView) itemView.findViewById(R.id.tvViewNameFoodProduct);
             date = (TextView) itemView.findViewById(R.id.tvViewDateFoodProduct);
+            pictureFP = (ImageView) itemView.findViewById(R.id.pictureFP);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
@@ -90,6 +93,9 @@ public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.
             String formattedDate = d.substring(6,8) + "." + d.substring(4,6) + "." + d.substring(0,4);
             date.setText(formattedDate);
         }
+
+        ImageView pictureFP = holder.pictureFP;
+        Picasso.get().load(foodProduct.getImageURL()).into(pictureFP);
     }
 
     @Override
