@@ -7,6 +7,15 @@
     android:orientation="vertical"
     tools:context=".AddFoodProduct">
 
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:textSize="30dp"
+      android:layout_marginTop="12dp"
+      android:layout_marginBottom="24dp"
+      android:text="@string/update_food_product_title" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

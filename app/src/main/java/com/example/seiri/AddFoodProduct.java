@@ -1,23 +1,32 @@
 package com.example.seiri;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 
 import com.example.seiri.BD.FoodProduct;
 import com.example.seiri.BD.FoodProductViewModel;
+import com.example.seiri.Tools.CaptureAct;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,6 +46,7 @@ public class AddFoodProduct extends AppCompatActivity {
     private FoodProductViewModel foodProductViewModel;
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
+    private ImageButton barcodeScanner;
 
     String baseUrlProduct = "https://world.openfoodfacts.org/api/v0/product/";
 
@@ -45,17 +55,10 @@ public class AddFoodProduct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_food_product);
 
-//        Button buttonapi = findViewById(R.id.testapi);
-//        buttonapi.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                testapi(Strin);
-//            }
-//        });
-
         foodProductViewModel = new ViewModelProvider(this).get(FoodProductViewModel.class);
         initDatePicker();
         dateButton = findViewById(R.id.btnDateFoodProduct);
+        barcodeScanner = findViewById(R.id.btnBarcodeScanner);
         // date format YYYYYMMDD
         String d = getTodaysDate();
         if (Locale.getDefault().getLanguage().equals("fr")) {
@@ -68,32 +71,12 @@ public class AddFoodProduct extends AppCompatActivity {
             dateButton.setText(formattedDate);
         }
 
-        final Switch SwBarcode = findViewById(R.id.SwBarcode);
-        final LinearLayout llBarcodeFoodProduct = findViewById(R.id.llBarcodeFoodProduct);
-        final LinearLayout llNameFoodProduct = findViewById(R.id.llNameFoodProduct);
-
-        // default switch checked  = false
-        llBarcodeFoodProduct.setVisibility(View.GONE);
-        llNameFoodProduct.setVisibility(View.VISIBLE);
-        SwBarcode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    llBarcodeFoodProduct.setVisibility(View.VISIBLE);
-                    llNameFoodProduct.setVisibility(View.GONE);
-                } else {
-                    llBarcodeFoodProduct.setVisibility(View.GONE);
-                    llNameFoodProduct.setVisibility(View.VISIBLE);
-                }
-            }
+        barcodeScanner.setOnClickListener(v -> {
+            scanCode();
         });
-
     }
 
     private JSONObject testapi(String barcodeFP) {
-        EditText barcode = findViewById(R.id.edtBarcodeFoodProduct);
-//        String barcodeFP = barcode.getText().toString();
-//        String barcodeFP = "3256223014516"; // Sirop de citron
         URL urlFoodProduct = createUrl(barcodeFP);
         GetProductByBarcodeAsyncTask getProductByBarcodeAsyncTask = new GetProductByBarcodeAsyncTask(urlFoodProduct);
         try {
@@ -187,25 +170,14 @@ public class AddFoodProduct extends AppCompatActivity {
         EditText quantity = findViewById(R.id.edtQuantityFoodProduct);
         Button expiryDate = findViewById(R.id.btnDateFoodProduct);
 
-        EditText barcode = findViewById(R.id.edtBarcodeFoodProduct);
         String nameFP = "Unknown";
-        Switch swBarcode = findViewById(R.id.SwBarcode);
-        if (swBarcode.isChecked()) {
-            String barcodeFP = barcode.getText().toString();
-            JSONObject jsonObject = testapi(barcodeFP);
-            try {
-                assert jsonObject != null;
-                nameFP = jsonObject.getJSONObject("product").getString("product_name");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        } else {
-            nameFP = name.getText().toString();
+        nameFP = name.getText().toString();
+        String quantityFP = quantity.getText().toString();
+        if (quantityFP.matches("")) {
+            quantityFP = "1";
         }
-
         // date format DD MM YYYYY
         String expiryDateFP = expiryDate.getText().toString();
-        String quantityFP = quantity.getText().toString();
         // date format YYYYYMMDD
         String formattedExpiryDateFP = expiryDateFP.substring(6,10) + expiryDateFP.substring(3,5) + expiryDateFP.substring(0,2);
 
@@ -276,4 +248,27 @@ public class AddFoodProduct extends AppCompatActivity {
     public void openDatePicker(View view) {
         datePickerDialog.show();
     }
+
+    public void scanCode() {
+        ScanOptions options = new ScanOptions();
+        options.setBeepEnabled(true);
+        options.setOrientationLocked(true);
+        options.setCaptureActivity(CaptureAct.class);
+        barLauncher.launch(options);
+    }
+
+    ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
+        if (result.getContents() != null) {
+            EditText name = findViewById(R.id.edtNameFoodProduct);
+            String nameFP = "Unknown";
+            JSONObject jsonObject = testapi(result.getContents());
+            try {
+                assert jsonObject != null;
+                nameFP = jsonObject.getJSONObject("product").getString("product_name");
+                name.setText(nameFP);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    });
 }
