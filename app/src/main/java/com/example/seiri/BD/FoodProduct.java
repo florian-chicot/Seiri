@@ -12,13 +12,13 @@ public class FoodProduct implements Serializable {
     private String name;
     private String expiryDate;
     private String quantity;
-//    private String imageURL;
+    private String imageURL;
 
-    public FoodProduct(String name, String expiryDate, String quantity/*, String imageURL*/) {
+    public FoodProduct(String name, String expiryDate, String quantity, String imageURL) {
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = quantity;
-//        this.imageURL = imageURL;
+        this.imageURL = imageURL;
     }
 
     public int getId() {
@@ -53,11 +53,11 @@ public class FoodProduct implements Serializable {
         this.quantity = quantity;
     }
 
-//    public String getImageURL() {
-//        return imageURL;
-//    }
+    public String getImageURL() {
+       return imageURL;
+    }
 
-//    public void setImageURL(String imageURL) {
-//        this.imageURL = imageURL;
-//    }
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
 }

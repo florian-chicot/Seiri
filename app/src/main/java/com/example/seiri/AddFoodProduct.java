@@ -47,6 +47,9 @@ public class AddFoodProduct extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
     private ImageButton barcodeScanner;
+    // Merge conflict
+    private String pathImg = "https://upload.wikimedia.org/wikipedia/en/5/5a/Black_question_mark.png";
+    // Merge conflict
 
     String baseUrlProduct = "https://world.openfoodfacts.org/api/v0/product/";
 
@@ -176,12 +179,13 @@ public class AddFoodProduct extends AppCompatActivity {
         if (quantityFP.matches("")) {
             quantityFP = "1";
         }
+
         // date format DD MM YYYYY
         String expiryDateFP = expiryDate.getText().toString();
         // date format YYYYYMMDD
         String formattedExpiryDateFP = expiryDateFP.substring(6,10) + expiryDateFP.substring(3,5) + expiryDateFP.substring(0,2);
 
-        FoodProduct foodProduct = new FoodProduct(nameFP, formattedExpiryDateFP, quantityFP);
+        FoodProduct foodProduct = new FoodProduct(nameFP, formattedExpiryDateFP, quantityFP, this.pathImg);
 
         foodProductViewModel.insert(foodProduct);
 
@@ -267,6 +271,11 @@ public class AddFoodProduct extends AppCompatActivity {
                 assert jsonObject != null;
                 nameFP = jsonObject.getJSONObject("product").getString("product_name");
                 name.setText(nameFP);
+                // Merge conflict
+                if (jsonObject.getJSONObject("product").has("image_url")) {
+                    this.pathImg = jsonObject.getJSONObject("product").getString("image_url");
+                }
+                // Merge conflict
             } catch (JSONException e) {
                 e.printStackTrace();
             }
