@@ -246,6 +246,7 @@ public class AddFoodProduct extends AppCompatActivity {
     }
 
     public void openDatePicker(View view) {
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
         datePickerDialog.show();
     }
 
