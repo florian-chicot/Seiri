@@ -20,6 +20,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:text="tvViewNameFoodProduct"
+              android:layout_marginLeft="4dp"
               android:textSize="18sp"
               android:textStyle="bold" />
 
@@ -28,6 +29,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:paddingBottom="12dp"
+              android:layout_marginLeft="8dp"
               android:text="tvViewDateFoodProduct"
               android:textSize="18sp" />
         </LinearLayout>
