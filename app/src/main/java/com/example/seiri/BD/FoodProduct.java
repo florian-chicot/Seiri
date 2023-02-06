@@ -12,21 +12,15 @@ public class FoodProduct implements Serializable {
     private String name;
     private String expiryDate;
     private String quantity;
-<<<<<<< HEAD
 
-    public FoodProduct(String name, String expiryDate, String quantity) {
-        this.name = name;
-        this.expiryDate = expiryDate;
-        this.quantity = quantity;
-=======
     private String imageURL;
+
 
     public FoodProduct(String name, String expiryDate, String quantity, String imageURL) {
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = quantity;
         this.imageURL = imageURL;
->>>>>>> 0fa253d3da1ca7653feb015d1eff28a7fb2381b9
     }
 
     public int getFoodProductId() {
@@ -60,8 +54,6 @@ public class FoodProduct implements Serializable {
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
-<<<<<<< HEAD
-=======
 
     public String getImageURL() {
        return imageURL;
@@ -70,5 +62,4 @@ public class FoodProduct implements Serializable {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
->>>>>>> 0fa253d3da1ca7653feb015d1eff28a7fb2381b9
 }
