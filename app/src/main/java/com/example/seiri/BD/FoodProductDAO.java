@@ -37,5 +37,5 @@ public interface FoodProductDAO {
 
     @Transaction
     @Query("SELECT * FROM Category")
-    List<CrossFoodProductWithCategories> getCategoryFoodProducts();
+    List<CrossCategoryWithFoodProducts> getCategoryFoodProducts();
 }
