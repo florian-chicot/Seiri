@@ -13,11 +13,17 @@ public class FoodProductViewModel extends AndroidViewModel {
     private LiveData<Integer> nbFoodProduct;
     private LiveData<List<FoodProduct>> allFoodProduct;
 
+    private List<CrossFoodProductWithCategories> foodProductCategories;
+
+    private List<CrossCategoryWithFoodProducts> categoryFoodProducts;
+
     public FoodProductViewModel(@NonNull Application application) {
         super(application);
         foodProductRepository = new FoodProductRepository(application);
         nbFoodProduct = foodProductRepository.getNbFoodProducts();
         allFoodProduct = foodProductRepository.getAllFoodProduct();
+        foodProductCategories = foodProductRepository.getFoodProductCategories();
+        categoryFoodProducts = foodProductRepository.getCategoryFoodProducts();
     }
 
     public LiveData<Integer> getNbFoodProduct() {
@@ -26,6 +32,14 @@ public class FoodProductViewModel extends AndroidViewModel {
 
     public LiveData<List<FoodProduct>> getAllFoodProduct() {
         return allFoodProduct;
+    }
+
+    public List<CrossFoodProductWithCategories> getFoodProductCategories() {
+        return foodProductCategories;
+    }
+
+    public List<CrossCategoryWithFoodProducts> getCategoryFoodProducts() {
+        return categoryFoodProducts;
     }
 
     public void insert(FoodProduct foodProduct) {

@@ -16,11 +16,17 @@ public class FoodProductRepository {
     private LiveData<Integer> nbFoodProducts;
     private LiveData<List<FoodProduct>> allFoodProduct;
 
+    private List<CrossFoodProductWithCategories> foodProductCategories;
+
+    private List<CrossCategoryWithFoodProducts> categoryFoodProducts;
+
     public FoodProductRepository(Application application) {
         FoodProductRoomDataBase db = FoodProductRoomDataBase.getDataBase(application);
         foodProductDAO = db.foodProductDAO();
         nbFoodProducts = foodProductDAO.nbFoodProducts();
         allFoodProduct = foodProductDAO.getAllFoodProduct();
+        foodProductCategories = foodProductDAO.getFoodProductCategories();
+        categoryFoodProducts = foodProductDAO.getCategoryFoodProducts();
     }
 
     public LiveData<List<FoodProduct>> getAllFoodProduct() {
@@ -29,6 +35,14 @@ public class FoodProductRepository {
 
     public LiveData<Integer> getNbFoodProducts() {
         return nbFoodProducts;
+    }
+
+    public List<CrossFoodProductWithCategories> getFoodProductCategories() {
+        return foodProductCategories;
+    }
+
+    public List<CrossCategoryWithFoodProducts> getCategoryFoodProducts() {
+        return categoryFoodProducts;
     }
 
     public void deleteAllFoodProduct() {
