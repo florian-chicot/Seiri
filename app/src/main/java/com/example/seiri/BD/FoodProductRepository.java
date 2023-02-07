@@ -16,17 +16,11 @@ public class FoodProductRepository {
     private LiveData<Integer> nbFoodProducts;
     private LiveData<List<FoodProduct>> allFoodProduct;
 
-    private List<CrossFoodProductWithCategories> foodProductCategories;
-
-    private List<CrossCategoryWithFoodProducts> categoryFoodProducts;
-
     public FoodProductRepository(Application application) {
         FoodProductRoomDataBase db = FoodProductRoomDataBase.getDataBase(application);
         foodProductDAO = db.foodProductDAO();
         nbFoodProducts = foodProductDAO.nbFoodProducts();
         allFoodProduct = foodProductDAO.getAllFoodProduct();
-        foodProductCategories = foodProductDAO.getFoodProductCategories();
-        categoryFoodProducts = foodProductDAO.getCategoryFoodProducts();
     }
 
     public LiveData<List<FoodProduct>> getAllFoodProduct() {
@@ -35,14 +29,6 @@ public class FoodProductRepository {
 
     public LiveData<Integer> getNbFoodProducts() {
         return nbFoodProducts;
-    }
-
-    public List<CrossFoodProductWithCategories> getFoodProductCategories() {
-        return foodProductCategories;
-    }
-
-    public List<CrossCategoryWithFoodProducts> getCategoryFoodProducts() {
-        return categoryFoodProducts;
     }
 
     public void deleteAllFoodProduct() {
@@ -64,7 +50,7 @@ public class FoodProductRepository {
         }
     }
 
-    public void insert(FoodProduct w) {
+    public void insertFoodProduct(FoodProduct w) {
         new InsertThread(foodProductDAO).execute(w);
     }
 
@@ -74,6 +60,10 @@ public class FoodProductRepository {
 
     public void updateFoodProduct(FoodProduct w) {
         new InsertThread(foodProductDAO).execute3(w);
+    }
+
+    public void insertCategory(Category w) {
+        new InsertThread(foodProductDAO).execute4(w);
     }
 
     public static class InsertThread {
@@ -91,7 +81,7 @@ public class FoodProductRepository {
             executorService.execute(new Runnable() {
                 @Override
                 public void run() {
-                    foodProductDAO.insert(foodProduct);
+                    foodProductDAO.insertFoodProduct(foodProduct);
                     // foodProductDAO.updateFoodProduct(foodProduct);
                 }
             });
@@ -111,6 +101,16 @@ public class FoodProductRepository {
                 @Override
                 public void run() {
                     foodProductDAO.updateFoodProduct(foodProduct);
+                }
+            });
+        }
+
+        public void execute4(Category category) {
+            executorService.execute(new Runnable() {
+                @Override
+                public void run() {
+                    foodProductDAO.insertCategory(category);
+                    // foodProductDAO.updateFoodProduct(foodProduct);
                 }
             });
         }

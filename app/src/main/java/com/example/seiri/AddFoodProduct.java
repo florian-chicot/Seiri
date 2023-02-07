@@ -187,7 +187,7 @@ public class AddFoodProduct extends AppCompatActivity {
 
         FoodProduct foodProduct = new FoodProduct(nameFP, formattedExpiryDateFP, quantityFP, this.pathImg);
 
-        foodProductViewModel.insert(foodProduct);
+        foodProductViewModel.insertFoodProduct(foodProduct);
 
         Intent intent = new Intent(view.getContext(), MainActivity.class);
         startActivity(intent);

@@ -63,21 +63,19 @@ public class UpdateFoodProduct extends AppCompatActivity {
 
         FoodProduct foodProduct = (FoodProduct) intent.getSerializableExtra("foodProduct");
 
-        EditText updatedName = findViewById(R.id.edtUpdateNameFoodProduct);
         Button updatedExpiryDate = findViewById(R.id.btnUpdateDateFoodProduct);
         edtUpdateNameFoodProduct = findViewById(R.id.edtUpdateNameFoodProduct);
         edtUpdateQuantityFoodProduct = findViewById(R.id.edtUpdateQuantityFoodProduct);
 
-        String updatedNameFP = updatedName.getText().toString();
         // date format DD MM YYYYY
         String updatedExpiryDateFP = updatedExpiryDate.getText().toString();
         // date format YYYYYMMDD
         String formattedUpdatedExpiryDateFP = updatedExpiryDateFP.substring(6,10) + updatedExpiryDateFP.substring(3,5) + updatedExpiryDateFP.substring(0,2);
+
         foodProduct.setName(edtUpdateNameFoodProduct.getText().toString());
         foodProduct.setQuantity(edtUpdateQuantityFoodProduct.getText().toString());
-
-        foodProduct.setName(updatedNameFP);
         foodProduct.setExpiryDate(formattedUpdatedExpiryDateFP);
+
         foodProductViewModel.updateFoodProduct(foodProduct);
 
         Intent intent1 = new Intent(view.getContext(), MainActivity.class);

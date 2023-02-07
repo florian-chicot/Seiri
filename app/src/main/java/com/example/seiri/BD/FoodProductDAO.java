@@ -14,7 +14,10 @@ import java.util.List;
 @Dao
 public interface FoodProductDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(FoodProduct foodProduct);
+    void insertFoodProduct(FoodProduct foodProduct);
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insertCategory(Category category);
 
     @Update
     void updateFoodProduct(FoodProduct foodProduct);
