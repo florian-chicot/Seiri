@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {FoodProduct.class}, version = 1)
+@Database(entities = {FoodProduct.class, Category.class, FoodProductCategoryCrossRef.class}, version = 1)
 public abstract class FoodProductRoomDataBase extends RoomDatabase {
     public abstract FoodProductDAO foodProductDAO();
 
