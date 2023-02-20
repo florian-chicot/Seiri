@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.seiri.BD.FoodProduct;
 import com.example.seiri.R;
 import com.squareup.picasso.Picasso;
+
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -28,6 +30,11 @@ public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.
         public TextView name;
         public TextView date;
         public ImageView pictureFP;
+        public ImageView circle_dark_green;
+        public ImageView circle_light_green;
+        public ImageView circle_orange;
+        public ImageView circle_red;
+        public TextView expiry;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -36,6 +43,17 @@ public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.
             name = (TextView) itemView.findViewById(R.id.tvViewNameFoodProduct);
             date = (TextView) itemView.findViewById(R.id.tvViewDateFoodProduct);
             pictureFP = (ImageView) itemView.findViewById(R.id.pictureFP);
+
+            circle_dark_green = (ImageView) itemView.findViewById(R.id.circle_dark_green);
+            circle_light_green = (ImageView) itemView.findViewById(R.id.circle_light_green);
+            circle_orange = (ImageView) itemView.findViewById(R.id.circle_orange);
+            circle_red = (ImageView) itemView.findViewById(R.id.circle_red);
+            expiry = (TextView) itemView.findViewById(R.id.tvViewExpiryFoodProduct);
+
+            circle_dark_green.setVisibility(View.GONE);
+            circle_light_green.setVisibility(View.GONE);
+            circle_orange.setVisibility(View.GONE);
+            circle_red.setVisibility(View.GONE);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
@@ -96,6 +114,78 @@ public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.
 
         ImageView pictureFP = holder.pictureFP;
         Picasso.get().load(foodProduct.getImageURL()).into(pictureFP);
+
+        TextView expiry = holder.expiry;
+
+        Calendar today = Calendar.getInstance();
+        Calendar expiryDate = Calendar.getInstance();
+        expiryDate.set(Integer.parseInt(d.substring(0, 4)), Integer.parseInt(d.substring(4, 6)) - 1, Integer.parseInt(d.substring(6, 8)));
+        long diffInMillis = expiryDate.getTimeInMillis() - today.getTimeInMillis();
+        int diffInDays = (int) (diffInMillis / (24 * 60 * 60 * 1000));
+
+        if (Locale.getDefault().getLanguage().equals("fr")) {
+            if (diffInDays < 0) {
+                holder.circle_red.setVisibility(View.VISIBLE);
+                expiry.setText("Périmé" + " " + "depuis" + " " + -diffInDays  + " " + "jours");
+            } else if (diffInDays == 0) {
+                holder.circle_red.setVisibility(View.VISIBLE);
+                expiry.setText("Périmé" + " " + "depuis" + " " + "aujourd'hui");
+            } else if (diffInDays == 1) {
+                holder.circle_orange.setVisibility(View.VISIBLE);
+                expiry.setText("Périmé" + " " + "depuis" + " " + "hier");
+            } else if (diffInDays <= 3) {
+                holder.circle_orange.setVisibility(View.VISIBLE);
+                expiry.setText("Périme" + " " + "dans" + " " + diffInDays + " " + "jours");
+            } else if (diffInDays <= 7) {
+                holder.circle_light_green.setVisibility(View.VISIBLE);
+                expiry.setText("Périme" + " " + "dans" + " " + diffInDays + " " + "jours");
+            } else {
+                holder.circle_dark_green.setVisibility(View.VISIBLE);
+                expiry.setText("Périme" + " " + "dans" + " " + diffInDays + " " + "jours");
+            }
+        } else {
+            if (diffInDays < 0) {
+                holder.circle_red.setVisibility(View.VISIBLE);
+                expiry.setText("Expired" + " " + "since" + " " + -diffInDays  + " " + "days");
+            } else if (diffInDays == 0) {
+                holder.circle_red.setVisibility(View.VISIBLE);
+                expiry.setText("Expired" + " " + "since" + " " + "today");
+            } else if (diffInDays == 1) {
+                holder.circle_orange.setVisibility(View.VISIBLE);
+                expiry.setText("Expired" + " " + "since" + " " + "yesterday");
+            } else if (diffInDays <= 3) {
+                holder.circle_orange.setVisibility(View.VISIBLE);
+                expiry.setText("Expire" + " " + "in" + " " + diffInDays + " " + "days");
+            } else if (diffInDays <= 7) {
+                holder.circle_light_green.setVisibility(View.VISIBLE);
+                expiry.setText("Expire" + " " + "in" + " " + diffInDays + " " + "days");
+            } else {
+                holder.circle_dark_green.setVisibility(View.VISIBLE);
+                expiry.setText("Expire" + " " + "in" + " " + diffInDays + " " + "days");
+            }
+        }
+        /* TODO with resources in strings.xml */
+        /*
+        if (diffInDays < 0) {
+            holder.circle_red.setVisibility(View.VISIBLE);
+            expiry.setText(getResources().getString(R.string.Expired) + " " + getResources().getString(R.string.since) + " " + -diffInDays  + " " + getResources().getString(R.string.days));
+        } else if (diffInDays == 0) {
+            holder.circle_red.setVisibility(View.VISIBLE);
+            expiry.setText(getResources().getString(R.string.Expired) + " " + getResources().getString(R.string.since) + " " + getResources().getString(R.string.today));
+        } else if (diffInDays == 1) {
+            holder.circle_orange.setVisibility(View.VISIBLE);
+            expiry.setText(getResources().getString(R.string.Expired) + " " + getResources().getString(R.string.since) + " " + getResources().getString(R.string.yesterday));
+        } else if (diffInDays <= 3) {
+            holder.circle_orange.setVisibility(View.VISIBLE);
+            expiry.setText(getResources().getString(R.string.Expire) + " " + getResources().getString(R.string.in) + " " + diffInDays + " " + getResources().getString(R.string.days));
+        } else if (diffInDays <= 7) {
+            holder.circle_light_green.setVisibility(View.VISIBLE);
+            expiry.setText(getResources().getString(R.string.Expire) + " " + getResources().getString(R.string.in) + " " + diffInDays + " " + getResources().getString(R.string.days));
+        } else {
+            holder.circle_dark_green.setVisibility(View.VISIBLE);
+            expiry.setText(getResources().getString(R.string.Expire) + " " + getResources().getString(R.string.in) + " " + diffInDays + " " + getResources().getString(R.string.days));
+        }
+        */
     }
 
     @Override

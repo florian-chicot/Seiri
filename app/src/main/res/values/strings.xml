@@ -14,4 +14,12 @@
     <string name="barcode">Barcode</string>
     <string name="add_food_product_title">Add a food product</string>
     <string name="update_food_product_title">Update a food product</string>
+    <string name="Expire">Expire</string>
+    <string name="Expired">Expired</string>
+    <string name="in">in</string>
+    <string name="since">since</string>
+    <string name="day">day</string>
+    <string name="days">days</string>
+    <string name="today">today</string>
+    <string name="yesterday">yesterday</string>
 </resources>

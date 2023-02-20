@@ -13,5 +13,13 @@
   <string name="no">Non</string>
   <string name="barcode">Code-barres</string>
   <string name="add_food_product_title">Ajout d\'un produit</string>
-  <string name="update_food_product_title">Update a food product</string>
+  <string name="update_food_product_title">Mise à jour d\'un produit</string>
+  <string name="Expire">Périme</string>
+  <string name="Expired">Périmé</string>
+  <string name="in">dans</string>
+  <string name="since">depuis</string>
+  <string name="day">jour</string>
+  <string name="days">jours</string>
+  <string name="today">aujourd\'hui</string>
+  <string name="yesterday">hier</string>
 </resources>
