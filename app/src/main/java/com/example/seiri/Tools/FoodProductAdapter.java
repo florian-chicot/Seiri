@@ -124,15 +124,15 @@ public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.
         int diffInDays = (int) (diffInMillis / (24 * 60 * 60 * 1000));
 
         if (Locale.getDefault().getLanguage().equals("fr")) {
-            if (diffInDays < 0) {
+            if (diffInDays < -1) {
                 holder.circle_red.setVisibility(View.VISIBLE);
                 expiry.setText("Périmé" + " " + "depuis" + " " + -diffInDays  + " " + "jours");
+            } else if (diffInDays == -1) {
+                holder.circle_red.setVisibility(View.VISIBLE);
+                expiry.setText("Périmé" + " " + "depuis" + " " + "hier");
             } else if (diffInDays == 0) {
                 holder.circle_red.setVisibility(View.VISIBLE);
                 expiry.setText("Périmé" + " " + "depuis" + " " + "aujourd'hui");
-            } else if (diffInDays == 1) {
-                holder.circle_orange.setVisibility(View.VISIBLE);
-                expiry.setText("Périmé" + " " + "depuis" + " " + "hier");
             } else if (diffInDays <= 3) {
                 holder.circle_orange.setVisibility(View.VISIBLE);
                 expiry.setText("Périme" + " " + "dans" + " " + diffInDays + " " + "jours");
