@@ -133,6 +133,9 @@ public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.
             } else if (diffInDays == 0) {
                 holder.circle_red.setVisibility(View.VISIBLE);
                 expiry.setText("Périmé" + " " + "depuis" + " " + "aujourd'hui");
+            } else if (diffInDays == 1) {
+                holder.circle_red.setVisibility(View.VISIBLE);
+                expiry.setText("Périme" + " " + "demain");
             } else if (diffInDays <= 3) {
                 holder.circle_orange.setVisibility(View.VISIBLE);
                 expiry.setText("Périme" + " " + "dans" + " " + diffInDays + " " + "jours");
@@ -153,6 +156,9 @@ public class FoodProductAdapter extends RecyclerView.Adapter<FoodProductAdapter.
             } else if (diffInDays == 0) {
                 holder.circle_red.setVisibility(View.VISIBLE);
                 expiry.setText("Expired" + " " + "since" + " " + "today");
+            } else if (diffInDays == 1) {
+                holder.circle_red.setVisibility(View.VISIBLE);
+                expiry.setText("Expire" + " " + "tomorrow");
             } else if (diffInDays <= 3) {
                 holder.circle_orange.setVisibility(View.VISIBLE);
                 expiry.setText("Expire" + " " + "in" + " " + diffInDays + " " + "days");
